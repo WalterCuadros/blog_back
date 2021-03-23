@@ -1,0 +1,25 @@
+App\Entity\Contact:
+    constraints:
+        - Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity: email
+    properties:
+        nombres:
+            - NotBlank: ~
+            - Length:
+                min: 3
+                max: 250
+                minMessage: 'The names must be at least {{ limit }} characters long'
+                maxMessage: 'The names cannot be longer than {{ limit }} characters'
+                allowEmptyString: false
+        
+        email:
+            - Email: ~
+            - NotBlank: ~
+            - Length:
+                min: 10
+                max: 100
+                minMessage: 'The names must be at least {{ limit }} characters long'
+                maxMessage: 'The names cannot be longer than {{ limit }} characters'
+                allowEmptyString: false
+          
+       
+      

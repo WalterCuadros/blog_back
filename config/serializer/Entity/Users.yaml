@@ -1,0 +1,13 @@
+App\Entity\Users:
+    attributes:
+        id:
+            groups: ['users']
+        nombres:
+            groups: ['users']
+        apellidos:
+            groups: ['users']
+        email:
+            groups: ['users']
+       
+        
+

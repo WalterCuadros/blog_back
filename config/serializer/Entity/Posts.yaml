@@ -1,0 +1,18 @@
+App\Entity\PostsBlog:
+    attributes:
+        id:
+            groups: ['postsBlog']
+        title:
+            groups: ['postsBlog']
+        content:
+            groups: ['postsBlog']
+        image:
+            groups: ['postsBlog']
+        date_created: 
+            groups: ['postsBlog']
+        autor:
+            groups: ['postsBlog']
+        id_autor:
+            groups: ['postsBlog']
+        
+
