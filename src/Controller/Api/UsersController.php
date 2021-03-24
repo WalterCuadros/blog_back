@@ -20,6 +20,7 @@ class UsersController extends AbstractFOSRestController
      * @Rest\View(serializerGroups={"users"}, serializerEnableMaxDepthChecks=true)
      */
     public function login(Request $request,UsersRepository $usersRepository){ 
+        //this controller consults the user in the database
         $response = new JsonResponse();
         $data_request = json_decode($request->getContent(), true);
         $email = $data_request['email'];
@@ -30,11 +31,13 @@ class UsersController extends AbstractFOSRestController
                 'mensaje'=>'No se pudo traer datos'
             );
         }else{
+            //find user by id in the bd
              $user = $usersRepository->findOneBy([
                 'email' => $email
             ]);
                 
             if(!empty($user)){
+                //valid if match password
                 if($user->getPassword() == $password){
                     $user_data = array(
                         'id'=>$user->getId(),
@@ -74,10 +77,9 @@ class UsersController extends AbstractFOSRestController
     public function createUser(
         EntityManagerInterface $em, Request $request
     ){
-        
+        //this controller create user in the bd
         $user = new Users();
         $form =$this->createForm(UserFormType::class,$user);
-
         $data = json_decode($request->getContent(), true);
         $form->submit($data);
         if($form->isSubmitted() && $form->isValid()){
@@ -87,7 +89,6 @@ class UsersController extends AbstractFOSRestController
                 'status'=>'success',
                 'user'=>$user
             );
-            
         }else{
             $data = array(
                 'status'=>'error',
@@ -96,6 +97,4 @@ class UsersController extends AbstractFOSRestController
         }
         return $data;
     }
-
-    
 }

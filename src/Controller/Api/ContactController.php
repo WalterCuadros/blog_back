@@ -14,8 +14,6 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 
 class ContactController extends AbstractFOSRestController
 {
-    
-    
     /**
      * @Rest\Post(path="/registerContact")
      * @Rest\View(serializerGroups={"contact"}, serializerEnableMaxDepthChecks=true)
@@ -23,9 +21,8 @@ class ContactController extends AbstractFOSRestController
     public function createContact(
         EntityManagerInterface $em, Request $request
     ){
-        
+        //this controller resgister the contact
         $contact = new Contact();
-
         $data = json_decode($request->getContent(), true);
             $contact->setNombres($data['nombres']);
             $contact->setEmail($data['email']);
